@@ -1,0 +1,242 @@
+/* Navbar.css - Modern Cyber Neon Theme */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(10, 12, 18, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0, 251, 255, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 25px rgba(0, 251, 255, 0.1);
+    background-image: 
+        radial-gradient(at 15% 25%, rgba(162, 0, 255, 0.15) 0, transparent 40%),
+        radial-gradient(at 85% 15%, rgba(0, 251, 255, 0.15) 0, transparent 50%);
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-logo:hover {
+    transform: translateY(-3px);
+    filter: drop-shadow(0 0 8px rgba(162, 0, 255, 0.5));
+}
+
+.nav-logo img {
+    width: 45px;
+    height: 45px;
+    filter: drop-shadow(0 0 5px rgba(0, 251, 255, 0.7));
+    transition: all 0.5s ease;
+}
+
+.nav-logo:hover img {
+    transform: rotate(15deg);
+}
+
+.nav-logo p {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00fbff 0%, #a200ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 10px rgba(0, 251, 255, 0.5);
+    position: relative;
+    letter-spacing: 0.5px;
+}
+
+.nav-logo p::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00fbff, #a200ff);
+    transition: width 0.5s ease;
+}
+
+.nav-logo:hover p::after {
+    width: 100%;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 3.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li {
+    font-weight: 600;
+    color: #e0e0e0;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px rgba(0, 251, 255, 0.3);
+}
+
+.nav-menu li::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00fbff, #a200ff);
+    transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.nav-menu li:hover::before {
+    width: 100%;
+}
+
+.nav-menu li:hover {
+    color: #00fbff;
+    text-shadow: 0 0 8px rgba(0, 251, 255, 0.7);
+    transform: translateY(-2px);
+}
+
+.nav-menu hr {
+    border: none;
+    height: 3px;
+    background: linear-gradient(90deg, #00fbff, #a200ff);
+    margin-top: 0.5rem;
+    box-shadow: 0 0 10px rgba(162, 0, 255, 0.5);
+    animation: neonPulse 2s infinite;
+}
+
+.navbar button {
+    padding: 0.8rem 2rem;
+    background: linear-gradient(135deg, #00fbff 0%, #a200ff 100%);
+    border: none;
+    border-radius: 4px;
+    color: #0a0c12;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(162, 0, 255, 0.4);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+}
+
+.navbar button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: all 0.6s ease;
+}
+
+.navbar button:hover::before {
+    left: 100%;
+}
+
+.navbar button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(0, 251, 255, 0.5), 0 0 30px rgba(162, 0, 255, 0.4);
+}
+
+.navbar img[src*="cart_icon"] {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    filter: invert(88%) sepia(21%) saturate(4358%) hue-rotate(123deg) brightness(105%) contrast(105%);
+}
+
+.navbar img[src*="cart_icon"]:hover {
+    transform: scale(1.2);
+    filter: invert(36%) sepia(97%) saturate(3100%) hue-rotate(258deg) brightness(102%) contrast(105%);
+}
+
+.nav-cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #00fbff 0%, #a200ff 100%);
+    color: #0a0c12;
+    font-size: 0.75rem;
+    font-weight: 800;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 251, 255, 0.7);
+    animation: neonBounce 2s infinite;
+}
+
+/* Animations */
+@keyframes neonPulse {
+    0% { opacity: 0.8; box-shadow: 0 0 5px rgba(162, 0, 255, 0.5); }
+    50% { opacity: 1; box-shadow: 0 0 15px rgba(0, 251, 255, 0.7), 0 0 20px rgba(162, 0, 255, 0.5); }
+    100% { opacity: 0.8; box-shadow: 0 0 5px rgba(162, 0, 255, 0.5); }
+}
+
+@keyframes neonBounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0) scale(1); }
+    40% { transform: translateY(-8px) scale(1.1); box-shadow: 0 0 15px rgba(0, 251, 255, 0.9); }
+    60% { transform: translateY(-4px) scale(1.05); }
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .navbar {
+        padding: 1rem 2rem;
+        flex-wrap: wrap;
+    }
+    
+    .nav-menu {
+        gap: 2rem;
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .nav-menu {
+        gap: 1.2rem;
+    }
+    
+    .nav-menu li {
+        font-size: 0.9rem;
+    }
+    
+    .navbar button {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .nav-logo p {
+        font-size: 1.5rem;
+    }
+    
+    .nav-logo img {
+        width: 38px;
+        height: 38px;
+    }
+}
