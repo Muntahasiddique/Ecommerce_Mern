@@ -1,0 +1,160 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: 400px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+}
+
+.item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.item img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.item:hover img {
+  transform: scale(1.05);
+}
+
+.item p {
+  margin: 15px 20px 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #2d2d2d;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.item-prices {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 20px 20px;
+}
+
+.item-price-new {
+  font-size: 18px;
+  font-weight: 700;
+  color: #4a6dff;
+}
+
+.item-price-old {
+  font-size: 15px;
+  font-weight: 500;
+  color: #8c8c8c;
+  text-decoration: line-through;
+}
+
+/* Sale badge */
+.item::before {
+  content: 'SALE';
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #ff4141;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 20px;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.item:hover::before {
+  opacity: 1;
+}
+
+/* Add to cart button */
+.item::after {
+  content: 'Add to Cart';
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #4a6dff;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 30px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 2;
+  white-space: nowrap;
+}
+
+.item:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .item {
+    width: 240px;
+    height: 360px;
+  }
+  
+  .item img {
+    height: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .item {
+    width: 220px;
+    height: 340px;
+  }
+  
+  .item img {
+    height: 220px;
+  }
+  
+  .item p {
+    font-size: 15px;
+  }
+  
+  .item-price-new {
+    font-size: 16px;
+  }
+  
+  .item-price-old {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .item {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+  }
+  
+  .item img {
+    height: 240px;
+  }
+  
+  .item::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    bottom: 100px;
+  }
+}

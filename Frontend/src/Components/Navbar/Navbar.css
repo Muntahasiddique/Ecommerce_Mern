@@ -84,23 +84,10 @@
     padding: 0.5rem 0;
     position: relative;
     transition: all 0.3s ease;
-    text-shadow: 0 0 5px rgba(0, 251, 255, 0.3);
+    text-shadow: 0 0 5px rgba(170, 203, 204, 0.3);
 }
 
-.nav-menu li::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #00fbff, #a200ff);
-    transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
 
-.nav-menu li:hover::before {
-    width: 100%;
-}
 
 .nav-menu li:hover {
     color: #00fbff;
@@ -184,6 +171,9 @@
     animation: neonBounce 2s infinite;
 }
 
+a:-webkit-any-link{
+    text-decoration: none;
+}
 /* Animations */
 @keyframes neonPulse {
     0% { opacity: 0.8; box-shadow: 0 0 5px rgba(162, 0, 255, 0.5); }
