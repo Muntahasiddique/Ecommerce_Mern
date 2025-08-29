@@ -109,6 +109,22 @@ res.json({
 })
 })
 
+// creating API FOR DELETING PRODUCTS
+ app.post('/removeproduct' , async (req , res)=>{
+    await Product.findOneAndDelete({id: req.body.id})
+    console.log("removed")
+    res.json({success:true,
+        name:req.body.name
+    })
+ })
+
+
+// creating API FOR getting all PRODUCTS
+app.get('/allproducts' , async(req , res)=>{
+    let products = await Product.find({});
+    console.log("All fetched product")
+    res.send(products)
+})
 
 app.listen(port, (error) => {
   if (!error) {
