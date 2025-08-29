@@ -1,0 +1,219 @@
+.BreadCrums {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  color: #5e5e5e;
+  margin: 40px 80px 20px;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  animation: slideIn 0.6s ease-out;
+  flex-wrap: wrap;
+}
+
+.BreadCrums img {
+  width: 12px;
+  height: 12px;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  filter: brightness(0.8);
+}
+
+.BreadCrums:hover img {
+  transform: translateX(3px);
+  opacity: 1;
+  filter: brightness(1);
+}
+
+.BreadCrums span {
+  position: relative;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.BreadCrums span:not(:last-child):hover {
+  background: linear-gradient(135deg, rgba(74, 109, 255, 0.1) 0%, rgba(74, 109, 255, 0.05) 100%);
+  color: #4a6dff;
+  transform: translateY(-1px);
+}
+
+.BreadCrums span:first-child {
+  color: #4a6dff;
+  font-weight: 600;
+  background: rgba(74, 109, 255, 0.1);
+  padding: 6px 14px;
+  border-radius: 8px;
+}
+
+.BreadCrums span:nth-child(5) {
+  color: #ff4141;
+  font-weight: 600;
+  background: rgba(255, 65, 65, 0.1);
+  padding: 6px 14px;
+  border-radius: 8px;
+}
+
+.BreadCrums span:last-child {
+  color: #2d2d2d;
+  font-weight: 700;
+  background: linear-gradient(135deg, #4a6dff 0%, #ff4141 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding: 6px 14px;
+}
+
+.BreadCrums span:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #4a6dff, #ff4141);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.BreadCrums span:not(:last-child):hover::after {
+  width: 80%;
+}
+
+/* Animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Micro-interactions */
+.BreadCrums span:active {
+  transform: scale(0.98);
+}
+
+.BreadCrums span:first-child::before {
+  content: '🏠';
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+.BreadCrums span:nth-child(5)::before {
+  content: '📁';
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+.BreadCrums span:last-child::before {
+  content: '📄';
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .BreadCrums {
+    margin: 35px 60px 18px;
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+  
+  .BreadCrums img {
+    width: 11px;
+    height: 11px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .BreadCrums {
+    margin: 30px 40px 15px;
+    padding: 12px 18px;
+    font-size: 13px;
+    gap: 10px;
+  }
+  
+  .BreadCrums img {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .BreadCrums span {
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .BreadCrums {
+    margin: 25px 30px 12px;
+    padding: 10px 16px;
+    font-size: 12px;
+    gap: 8px;
+    border-radius: 12px;
+  }
+  
+  .BreadCrums img {
+    width: 9px;
+    height: 9px;
+  }
+  
+  .BreadCrums span {
+    padding: 4px 8px;
+  }
+  
+  .BreadCrums span::before {
+    margin-right: 4px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .BreadCrums {
+    margin: 20px 20px 10px;
+    padding: 8px 12px;
+    font-size: 11px;
+    gap: 6px;
+    justify-content: center;
+  }
+  
+  .BreadCrums img {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .BreadCrums span {
+    padding: 3px 6px;
+  }
+  
+  .BreadCrums span::before {
+    margin-right: 3px;
+    font-size: 11px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .BreadCrums {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
+    color: #e0e0e0;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .BreadCrums span:last-child {
+    background: linear-gradient(135deg, #6b8cff 0%, #ff6b6b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
