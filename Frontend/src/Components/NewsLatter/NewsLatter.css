@@ -1,0 +1,220 @@
+/* NewsLetter.css */
+
+.newslatter {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  margin: 80px 0;
+}
+
+.newslatter::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.newslatter h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  line-height: 1.3;
+}
+
+.newslatter p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+  color: #f8f8f8;
+}
+
+.newslatter > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  background: white;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.newslatter > div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.newslatter input {
+  flex: 1;
+  padding: 18px 25px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: transparent;
+  color: #333;
+}
+
+.newslatter input::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+.newslatter button {
+  padding: 18px 35px;
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.newslatter button:hover {
+  background: linear-gradient(45deg, #ff5252, #ff7676);
+  box-shadow: 0 5px 15px rgba(255, 82, 82, 0.4);
+}
+
+/* Floating envelope icon */
+.newslatter::after {
+  content: '✉️';
+  position: absolute;
+  font-size: 2rem;
+  top: 20px;
+  right: 20px;
+  opacity: 0.1;
+  z-index: 1;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
+/* Success message (optional for JS functionality) */
+.newslatter .success-message {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.newslatter .success-message.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .newslatter {
+    padding: 60px 20px;
+    margin: 60px 0;
+  }
+  
+  .newslatter h1 {
+    font-size: 2.2rem;
+  }
+  
+  .newslatter p {
+    font-size: 1rem;
+    letter-spacing: 2px;
+  }
+  
+  .newslatter > div {
+    flex-direction: column;
+    border-radius: 15px;
+    max-width: 400px;
+  }
+  
+  .newslatter input {
+    width: 100%;
+    padding: 15px 20px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .newslatter button {
+    width: 100%;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .newslatter {
+    padding: 40px 15px;
+    margin: 40px 0;
+  }
+  
+  .newslatter h1 {
+    font-size: 1.8rem;
+  }
+  
+  .newslatter p {
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+  }
+  
+  .newslatter > div {
+    max-width: 100%;
+  }
+}
+
+/* Focus states for accessibility */
+.newslatter input:focus {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Animation for section entrance */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.newslatter {
+  animation: fadeIn 0.8s ease-out;
+}

@@ -1,0 +1,245 @@
+/* NewCollections.css */
+
+.new-collections {
+  padding: 80px 0;
+  background: linear-gradient(to bottom, #f9f9f9 0%, #ffffff 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.new-collections::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23e84393' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.new-collections h1 {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+}
+
+.new-collections h1::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #e84393, #6c5ce7);
+  border-radius: 2px;
+}
+
+.new-collections hr {
+  width: 150px;
+  height: 3px;
+  background: linear-gradient(90deg, #e84393, #6c5ce7);
+  margin: 30px auto 50px;
+  border: none;
+  border-radius: 3px;
+}
+
+.collections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Collection item styling */
+.collections .item {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+
+.collections .item:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.collections .item::before {
+  content: 'NEW';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: linear-gradient(45deg, #e84393, #6c5ce7);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  z-index: 10;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.collections .item-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.collections .item:hover .item-image {
+  transform: scale(1.05);
+}
+
+.collections .item-content {
+  padding: 22px;
+}
+
+.collections .item-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  transition: color 0.3s ease;
+}
+
+.collections .item:hover .item-name {
+  color: #e84393;
+}
+
+.collections .item-prices {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 18px;
+}
+
+.collections .item-new-price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #e84393;
+}
+
+.collections .item-old-price {
+  font-size: 1.1rem;
+  color: #95a5a6;
+  text-decoration: line-through;
+}
+
+.collections .item-button {
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(90deg, #e84393, #6c5ce7);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+}
+
+.collections .item-button:hover {
+  background: linear-gradient(90deg, #6c5ce7, #e84393);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .collections {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .new-collections {
+    padding: 60px 0;
+  }
+  
+  .new-collections h1 {
+    font-size: 2.5rem;
+  }
+  
+  .collections {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 0 15px;
+  }
+  
+  .collections .item-image {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .new-collections {
+    padding: 40px 0;
+  }
+  
+  .new-collections h1 {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+  
+  .collections {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 10px;
+  }
+  
+  .collections .item-image {
+    height: 220px;
+  }
+  
+  .collections .item-content {
+    padding: 18px;
+  }
+}
+
+/* Animation for section entrance */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.new-collections {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.collections .item {
+  animation: fadeInUp 0.8s ease-out;
+  animation-fill-mode: both;
+}
+
+.collections .item:nth-child(1) { animation-delay: 0.1s; }
+.collections .item:nth-child(2) { animation-delay: 0.2s; }
+.collections .item:nth-child(3) { animation-delay: 0.3s; }
+.collections .item:nth-child(4) { animation-delay: 0.4s; }
+.collections .item:nth-child(5) { animation-delay: 0.5s; }
+.collections .item:nth-child(6) { animation-delay: 0.6s; }
+.collections .item:nth-child(7) { animation-delay: 0.7s; }
+.collections .item:nth-child(8) { animation-delay: 0.8s; }
