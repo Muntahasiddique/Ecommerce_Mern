@@ -1,0 +1,186 @@
+/* Descriptionbox.css - Modern Elegant Design */
+
+.Descriptionbox {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.Descriptionbox:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.descriptiobox-nevigator {
+    display: flex;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.descriptionbox-navbox {
+    padding: 18px 30px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #2d3436;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    border-top-left-radius: 16px;
+    box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.descriptionbox-navbox::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #6c5ce7, #00cec9);
+    border-radius: 4px 4px 0 0;
+    transform: scaleX(1);
+    transition: transform 0.3s ease;
+}
+
+.descriptionbox-navbox-fade {
+    padding: 18px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #636e72;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.descriptionbox-navbox-fade:hover {
+    color: #2d3436;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.descriptionbox-navbox-fade::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #6c5ce7, #00cec9);
+    border-radius: 4px 4px 0 0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.descriptionbox-navbox-fade:hover::after {
+    transform: scaleX(1);
+}
+
+.descriptionbox-description {
+    padding: 35px;
+    line-height: 1.7;
+    font-size: 17px;
+    color: #2d3436;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+}
+
+.descriptionbox-description p {
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 25px;
+    transition: all 0.3s ease;
+}
+
+.descriptionbox-description p:hover {
+    transform: translateX(5px);
+}
+
+.descriptionbox-description p::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #6c5ce7;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.descriptionbox-description p:first-child {
+    font-weight: 600;
+    color: #2d3436;
+}
+
+.descriptionbox-description p:last-child {
+    margin-bottom: 0;
+    color: #636e72;
+}
+
+/* Animation for the description box */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.Descriptionbox {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .Descriptionbox {
+        margin: 25px 15px;
+        border-radius: 12px;
+    }
+    
+    .descriptiobox-nevigator {
+        flex-direction: column;
+    }
+    
+    .descriptionbox-navbox,
+    .descriptionbox-navbox-fade {
+        padding: 15px 20px;
+        font-size: 16px;
+        text-align: center;
+    }
+    
+    .descriptionbox-navbox {
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+    
+    .descriptionbox-description {
+        padding: 25px 20px;
+        font-size: 16px;
+    }
+    
+    .descriptionbox-description p {
+        padding-left: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .descriptionbox-navbox,
+    .descriptionbox-navbox-fade {
+        padding: 12px 15px;
+        font-size: 15px;
+    }
+    
+    .descriptionbox-description {
+        padding: 20px 15px;
+        font-size: 15px;
+    }
+    
+    .descriptionbox-description p {
+        padding-left: 18px;
+    }
+}
