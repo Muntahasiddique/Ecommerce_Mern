@@ -1,0 +1,268 @@
+/* Footer.css */
+
+.footer {
+  background: linear-gradient(to right, #2c3e50, #34495e);
+  color: #ecf0f1;
+  padding: 50px 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-logo img {
+  width: 80px;
+  height: auto;
+  margin-bottom: 15px;
+  filter: brightness(0) invert(1);
+}
+
+.footer-logo p {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #e84393;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.footer-newsletter {
+  max-width: 400px;
+}
+
+.footer-newsletter h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #e84393;
+}
+
+.footer-newsletter p {
+  margin-bottom: 20px;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+.newsletter-input {
+  display: flex;
+  background: white;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.newsletter-input input {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.newsletter-input button {
+  padding: 12px 25px;
+  background: linear-gradient(45deg, #e84393, #6c5ce7);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.newsletter-input button:hover {
+  background: linear-gradient(45deg, #6c5ce7, #e84393);
+}
+
+.footer-middle {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.footer-column h4 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #e84393;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-column h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: #e84393;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+  color: #ecf0f1;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.footer-column ul li a:hover {
+  color: #e84393;
+  opacity: 1;
+  padding-left: 5px;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background: #e84393;
+  transform: translateY(-5px);
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+.footer-copyright hr {
+  border: none;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  margin-bottom: 20px;
+}
+
+.footer-copyright p {
+  text-align: center;
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .footer-links {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-top {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .footer-logo {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .footer-newsletter {
+    text-align: center;
+  }
+  
+  .footer-links {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+  
+  .footer-column h4::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 40px 0 20px;
+  }
+  
+  .footer-top, .footer-middle, .footer-bottom {
+    padding: 0 15px;
+  }
+  
+  .footer-logo p {
+    font-size: 1.5rem;
+  }
+  
+  .newsletter-input {
+    flex-direction: column;
+    border-radius: 15px;
+  }
+  
+  .newsletter-input input {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .newsletter-input button {
+    padding: 15px;
+  }
+  
+  .social-icons {
+    gap: 15px;
+  }
+  
+  .social-icons a {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .social-icons img {
+    width: 20px;
+    height: 20px;
+  }
+}
