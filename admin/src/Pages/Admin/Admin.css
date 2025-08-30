@@ -1,0 +1,131 @@
+.Admin {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* Main content area */
+.Admin > :nth-child(2) {
+    flex: 1;
+    padding: 2rem;
+    margin-left: 250px; /* Same as sidebar width */
+    min-height: calc(100vh - 80px);
+    margin-top: 80px; /* Adjust based on navbar height */
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .Admin > :nth-child(2) {
+        margin-left: 220px;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .Admin {
+        flex-direction: column;
+    }
+    
+    .Admin > :nth-child(2) {
+        margin-left: 0;
+        margin-top: 70px;
+        padding: 1rem;
+        min-height: calc(100vh - 150px);
+    }
+}
+
+@media (max-width: 480px) {
+    .Admin > :nth-child(2) {
+        margin-top: 60px;
+        padding: 0.8rem;
+        min-height: calc(100vh - 140px);
+    }
+}
+
+/* Smooth transitions */
+.Admin {
+    transition: all 0.3s ease;
+}
+
+/* Ensure content is visible */
+.Admin > :nth-child(2) {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+}
+
+/* Scrollbar styling */
+.Admin > :nth-child(2)::-webkit-scrollbar {
+    width: 8px;
+}
+
+.Admin > :nth-child(2)::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.Admin > :nth-child(2)::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.Admin > :nth-child(2)::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Loading animation */
+.Admin > :nth-child(2) {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Print styles */
+@media print {
+    .Admin {
+        display: block;
+    }
+    
+    .Admin > :nth-child(2) {
+        margin-left: 0;
+        margin-top: 0;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .Admin {
+        background: #ffffff;
+    }
+    
+    .Admin > :nth-child(2) {
+        border-left: 2px solid #000000;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .Admin,
+    .Admin > :nth-child(2) {
+        transition: none;
+        animation: none;
+    }
+}
+
+/* Ensure content doesn't get hidden */
+.Admin {
+    overflow: visible !important;
+}
+
+.Admin > :nth-child(2) {
+    overflow: visible !important;
+}

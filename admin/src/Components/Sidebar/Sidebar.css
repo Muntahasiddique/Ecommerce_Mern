@@ -1,0 +1,123 @@
+.Sidebar {
+    width: 250px;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 2rem 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+    border-right: 2px solid rgba(255, 255, 255, 0.2);
+    z-index: 900; /* LOWER than navbar's z-index */
+    overflow-y: auto;
+    margin-top: 80px; /* PUSH DOWN BELOW NAVBAR */
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 1.2rem 2rem;
+    margin: 0 1rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.sidebar-item:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateX(8px);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-item img {
+    width: 32px;
+    height: 32px;
+    margin-right: 1rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.sidebar-item:hover img {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.sidebar-item p {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+
+.sidebar-item:hover p {
+    color: #ffd700;
+    text-shadow: 0 2px 6px rgba(255, 215, 0, 0.4);
+}
+
+/* FIX FOR NAVBAR OVERLAP */
+.Sidebar {
+    margin-top: 80px; /* Adjust based on your navbar height */
+    height: calc(100vh - 80px); /* Adjust height accordingly */
+}
+
+/* Ensure navbar has higher z-index */
+/* Add this to your Navbar.css */
+.navbar-class { /* Use your actual navbar class name */
+    z-index: 1000 !important; /* Higher than sidebar */
+    position: relative;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .Sidebar {
+        width: 220px;
+        padding: 1.5rem 0;
+        margin-top: 70px;
+        height: calc(100vh - 70px);
+    }
+    
+    .sidebar-item {
+        padding: 1rem 1.5rem;
+        margin: 0 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .Sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        margin-top: 0;
+        flex-direction: row;
+        padding: 1rem 0;
+        z-index: 1000;
+    }
+    
+    .sidebar-item {
+        flex: 1;
+        flex-direction: column;
+        text-align: center;
+        padding: 0.8rem;
+        margin: 0 0.5rem;
+    }
+    
+    .sidebar-item img {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+    
+    .sidebar-item:hover {
+        transform: translateY(-5px);
+    }
+}
