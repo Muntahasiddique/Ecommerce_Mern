@@ -1,0 +1,329 @@
+.ListProduct {
+    padding: 40px 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    min-height: 100vh;
+}
+
+.ListProduct h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #2d3748;
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding-bottom: 20px;
+    letter-spacing: -0.5px;
+}
+
+.ListProduct h1:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 5px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 3px;
+}
+
+.listproduct-formate-main {
+    display: grid;
+    grid-template-columns: 120px 2fr 1fr 1fr 1fr 80px;
+    gap: 30px;
+    padding: 25px 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 16px;
+    font-weight: 600;
+    box-shadow: 0 12px 40px rgba(102, 126, 234, 0.35);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.listproduct-allproducts {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.listproduct-allproducts hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+    margin: 15px 0 30px 0;
+}
+
+.listProduct-Formate {
+    display: grid;
+    grid-template-columns: 120px 2fr 1fr 1fr 1fr 80px;
+    gap: 30px;
+    padding: 25px 30px;
+    align-items: center;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: #ffffff;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.listProduct-Formate:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.listProduct-Formate:hover:before {
+    left: 100%;
+}
+
+.listProduct-Formate:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-color: #e2e8f0;
+}
+
+.listproduct-product-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s ease;
+    border: 3px solid #fff;
+}
+
+.listProduct-Formate:hover .listproduct-product-icon {
+    transform: scale(1.08) rotate(2deg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.listProduct-Formate p {
+    color: #2d3748;
+    font-weight: 500;
+    margin: 0;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.listProduct-Formate:hover p {
+    color: #4a5568;
+}
+
+.listProduct-Formate p:nth-child(3),
+.listProduct-Formate p:nth-child(4) {
+    color: #2d3748;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.listproduct-removeicon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(254, 215, 215, 0.5);
+    border: 2px solid #fff;
+}
+
+.listproduct-removeicon:hover {
+    background: linear-gradient(135deg, #feb2b2 0%, #fc8181 100%);
+    transform: scale(1.15) rotate(90deg);
+    box-shadow: 0 8px 25px rgba(254, 178, 178, 0.7);
+}
+
+/* Empty state styling */
+.listproduct-allproducts:empty::before {
+    content: 'No products found. Add some products to see them here!';
+    display: block;
+    text-align: center;
+    padding: 60px 20px;
+    color: #718096;
+    font-style: italic;
+    font-size: 1.2rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 12px;
+    border: 2px dashed #cbd5e0;
+}
+
+/* Loading animation */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.listProduct-Formate.loading {
+    animation: shimmer 2s infinite linear;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 1000px 100%;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .listproduct-formate-main,
+    .listProduct-Formate {
+        grid-template-columns: 100px 1.5fr 1fr 1fr 1fr 70px;
+        gap: 25px;
+        padding: 20px 25px;
+    }
+    
+    .listproduct-product-icon {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media (max-width: 968px) {
+    .ListProduct {
+        padding: 30px 20px;
+    }
+    
+    .ListProduct h1 {
+        font-size: 2.4rem;
+        margin-bottom: 35px;
+    }
+    
+    .listproduct-formate-main,
+    .listProduct-Formate {
+        grid-template-columns: 80px 1fr 1fr;
+        gap: 20px;
+        padding: 18px 20px;
+    }
+    
+    .listproduct-formate-main p:nth-child(4),
+    .listproduct-formate-main p:nth-child(5),
+    .listProduct-Formate p:nth-child(4),
+    .listProduct-Formate p:nth-child(5) {
+        display: none;
+    }
+    
+    .listproduct-product-icon {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 640px) {
+    .ListProduct {
+        padding: 20px 15px;
+    }
+    
+    .ListProduct h1 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+    }
+    
+    .listproduct-formate-main,
+    .listProduct-Formate {
+        grid-template-columns: 60px 1fr 60px;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .listproduct-formate-main p:nth-child(3),
+    .listproduct-formate-main p:nth-child(6),
+    .listProduct-Formate p:nth-child(3),
+    .listProduct-Formate p:nth-child(6) {
+        display: none;
+    }
+    
+    .listproduct-product-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .listproduct-removeicon {
+        width: 20px;
+        height: 20px;
+        padding: 8px;
+    }
+    
+    .listproduct-formate-main {
+        font-size: 1rem;
+        letter-spacing: normal;
+    }
+}
+
+/* Animation for product entries */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.listProduct-Formate {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+.listProduct-Formate:nth-child(1) { animation-delay: 0.1s; }
+.listProduct-Formate:nth-child(2) { animation-delay: 0.2s; }
+.listProduct-Formate:nth-child(3) { animation-delay: 0.3s; }
+.listProduct-Formate:nth-child(4) { animation-delay: 0.4s; }
+.listProduct-Formate:nth-child(5) { animation-delay: 0.5s; }
+.listProduct-Formate:nth-child(6) { animation-delay: 0.6s; }
+.listProduct-Formate:nth-child(7) { animation-delay: 0.7s; }
+.listProduct-Formate:nth-child(8) { animation-delay: 0.8s; }
+
+/* Scrollbar styling for the product list */
+.listproduct-allproducts {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e0 #f1f5f9;
+}
+
+.listproduct-allproducts::-webkit-scrollbar {
+    width: 8px;
+}
+
+.listproduct-allproducts::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+.listproduct-allproducts::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 4px;
+}
+
+.listproduct-allproducts::-webkit-scrollbar-thumb:hover {
+    background: #a0aec0;
+}
+
+/* Focus states for accessibility */
+.listproduct-removeicon:focus {
+    outline: 3px solid #4299e1;
+    outline-offset: 2px;
+}
+
+.listProduct-Formate:focus-within {
+    border-color: #4299e1;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
