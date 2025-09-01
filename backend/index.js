@@ -163,7 +163,8 @@ app.post('/signup',async (req,res)=>{
     name:req.body.name,
     email:req.body.email,
      password:req.body.password,
-      cartData:req.body.cart,
+      cartData:cart,
+      date: Date.now()
   })
   await user.save();
 
@@ -211,6 +212,50 @@ let newCollection = products.slice(1).slice(-8);
 console.log("New collection fetched")
 res.send(newCollection);
 })
+
+//creating end point for popular in women 
+app.get('/popularinwomen', async ( req,res)=>{
+let products = await Product.find({category:"women"});
+let PopularInWomen = products.slice(0,4);
+console.log("popular in women fetched fetched")
+res.send(PopularInWomen);
+})
+//creating middleware to fetch user
+const fetchUser = async (req , res)=>{
+const token = req.header('auth-token')
+if (!token) {
+  res.status(401).send({errors:"please authenticate using valid token"})
+}
+else{
+  try {
+    const data = jwt.verify(token,'secret_ecom')
+    req.user = data.user;
+    next();
+  } catch (error) {
+    res.status(401).send({errors:"Please authenticate using a valid token"})
+  }
+}
+}
+
+//creating end point for add to cart
+app.post('/addtocart',fetchUser , async ( req,res)=>{
+    console.log("Added" , req.body.itemId)
+let userData = await Users.findOne({_id:req.user.id})
+userData.cartData[req.body.itemId] += 1;
+await Users.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData})
+res.send("Added ")
+})
+
+//creating endpoint to remove product from cartdata
+app.post('/removefromcart' , fetchUser,async ( req,res)=>{
+  console.log("removed" , req.body.itemId)
+  let userData = await Users.findOne({_id:req.user.id})
+  if(userData.cartData[req.body.itemId] >0)
+userData.cartData[req.body.itemId] -= 1;
+await Users.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData})
+res.send("Removed ")
+})
+
 app.listen(port, (error) => {
   if (!error) {
     console.log("server running on " + port);
