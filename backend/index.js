@@ -204,6 +204,13 @@ else{
 }
 })
 
+//creating end point for new collection dta
+app.get('/newcollections', async ( req,res)=>{
+let products = await Product.find({});
+let newCollection = products.slice(1).slice(-8);
+console.log("New collection fetched")
+res.send(newCollection);
+})
 app.listen(port, (error) => {
   if (!error) {
     console.log("server running on " + port);

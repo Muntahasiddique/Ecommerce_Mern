@@ -23,10 +23,16 @@ const {getTotalCartItems } = useContext(ShopContext)
         <li onClick={()=>{setmenu("men")}}  ><Link  to='/men' >Men</Link>{menu === "men"? <hr/>: <></> } </li>
 
       </ul>
-      <Link to='/login' >
+      <div>
+        {
+          localStorage.getItem('auth-token')? <button onClick={()=>{localStorage.removeItem('auth-token');window.location.replace('/')}} >Logout</button>:  <Link to='/login' >
         <button>Login</button>
       
       </Link>
+          
+        }
+      </div>
+    
      <Link to='/cart' >
       <img src={cart_icon} alt="" />
      </Link>
