@@ -20,7 +20,7 @@ const {all_product , cartItem , RemoveToCart , getTotalAmount} = useContext(Shop
      {all_product.map((e , i)=>{
        
         if(cartItem[e.id] > 0){
-            return  <div>
+            return  <div key={e.id} >
         <div className="cartitems-formate">
             <img src={e.image} className='Carticon-product-icon' alt="" />
             <p>{e.name}</p>

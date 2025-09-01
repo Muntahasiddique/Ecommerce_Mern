@@ -160,7 +160,7 @@ app.post('/signup',async (req,res)=>{
     
   }
   const user = new Users({
-    name:req.body.name,
+    name:req.body.username,
     email:req.body.email,
      password:req.body.password,
       cartData:cart,
@@ -221,10 +221,10 @@ console.log("popular in women fetched fetched")
 res.send(PopularInWomen);
 })
 //creating middleware to fetch user
-const fetchUser = async (req , res)=>{
+const fetchUser = async (req , res,next)=>{
 const token = req.header('auth-token')
 if (!token) {
-  res.status(401).send({errors:"please authenticate using valid token"})
+return  res.status(401).send({errors:"please authenticate using valid token"})
 }
 else{
   try {
@@ -232,28 +232,37 @@ else{
     req.user = data.user;
     next();
   } catch (error) {
-    res.status(401).send({errors:"Please authenticate using a valid token"})
+   return res.status(401).send({errors:"Please authenticate using a valid token"})
   }
 }
 }
 
 //creating end point for add to cart
-app.post('/addtocart',fetchUser , async ( req,res)=>{
-    console.log("Added" , req.body.itemId)
-let userData = await Users.findOne({_id:req.user.id})
-userData.cartData[req.body.itemId] += 1;
-await Users.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData})
-res.send("Added ")
-})
+app.post('/addtocart', fetchUser, async (req, res) => {
+  console.log("Added", req.body.itemId);
+  let userData = await Users.findOne({_id: req.user.id});
+  userData.cartData[req.body.itemId] += 1;
+  await Users.findOneAndUpdate({_id: req.user.id}, {cartData: userData.cartData});
+  res.json({ success: true, message: "Added to cart" }); // Return JSON instead of plain text
+});
 
 //creating endpoint to remove product from cartdata
-app.post('/removefromcart' , fetchUser,async ( req,res)=>{
-  console.log("removed" , req.body.itemId)
+app.post('/removefromcart', fetchUser, async (req, res) => {
+  console.log("removed", req.body.itemId);
+  let userData = await Users.findOne({_id: req.user.id});
+  if (userData.cartData[req.body.itemId] > 0) {
+    userData.cartData[req.body.itemId] -= 1;
+    await Users.findOneAndUpdate({_id: req.user.id}, {cartData: userData.cartData});
+  }
+  res.json({ success: true, message: "Removed from cart" }); // Return JSON instead of plain text
+});
+
+
+//creating endpoint to get cart data
+app.post('/getcart' , fetchUser,async ( req,res)=>{
+  console.log("getcart" )
   let userData = await Users.findOne({_id:req.user.id})
-  if(userData.cartData[req.body.itemId] >0)
-userData.cartData[req.body.itemId] -= 1;
-await Users.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData})
-res.send("Removed ")
+res.json(userData.cartData)
 })
 
 app.listen(port, (error) => {
