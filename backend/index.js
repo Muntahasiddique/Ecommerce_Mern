@@ -17,7 +17,67 @@ mongoose.connect(
 );
 
 // Api creation
+// Get single product by ID
+app.get('/product/:id', async (req, res) => {
+  try {
+    console.log("GET /product/:id called with id:", req.params.id);
+    const productId = parseInt(req.params.id);
+    const product = await Product.findOne({ id: productId });
+    
+    if (!product) {
+      console.log("Product not found with id:", productId);
+      return res.status(404).json({ 
+        success: false, 
+        message: "Product not found" 
+      });
+    }
+    
+    console.log("Product found:", product);
+    res.json(product);
+  } catch (error) {
+    console.error("Error fetching product:", error);
+    res.status(500).json({ 
+      success: false, 
+      message: "Server error" 
+    });
+  }
+});
 
+// Update product endpoint
+app.post('/updateproduct', async (req, res) => {
+  try {
+    const product = await Product.findOneAndUpdate(
+      { id: req.body.id },
+      {
+        name: req.body.name,
+        category: req.body.category,
+        new_price: req.body.new_price,
+        old_price: req.body.old_price,
+        image: req.body.image // Include image update
+      },
+      { new: true }
+    );
+    
+    if (!product) {
+      return res.status(404).json({ 
+        success: false, 
+        message: "Product not found" 
+      });
+    }
+    
+    res.json({
+      success: true,
+      message: "Product updated successfully",
+      product: product
+    });
+  } catch (error) {
+    console.error("Error updating product:", error);
+    res.status(500).json({ 
+      success: false, 
+      message: "Server error" 
+    });
+  }
+});
 app.get("/", (req, res) => {
   res.send("express running");
 });

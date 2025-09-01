@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./ListProduct.css";
 import cross_icon from '../../assets/cross_icon.png'
+import { Link } from "react-router-dom"; 
 const ListProduct = () => {
   const [allproducts, setallproducts] = useState([]);
 
@@ -37,19 +38,28 @@ const ListProduct = () => {
         <p>Old Price</p>
         <p>New Price</p>
         <p>Category</p>
+          <p>Edit</p> 
         <p>Remove</p>
       </div>
       <div className="listproduct-allproducts">
         <hr />
         {allproducts.map((product,index)=>{
-           return    <div  key={index}       className="listProduct-formate-main listProduct-Formate ">
-               <img src={product.image} alt="" className="listproduct-product-icon" />
-               <p>{product.name}</p>
-               <p>${product.old_price}</p>
-                <p>${product.new_price}</p>
-                 <p>{product.category}</p>
-                 <img src={cross_icon} onClick ={()=>{remove_product(product.id)}}  className="listproduct-removeicon" alt="" />
-           </div>
+           return    <div key={index} className="listProduct-formate-main listProduct-Formate">
+  <img src={product.image} alt="" className="listproduct-product-icon" />
+  <p>{product.name}</p>
+  <p>${product.old_price}</p>
+  <p>${product.new_price}</p>
+  <p>{product.category}</p>
+  <Link to={`/editproduct/${product.id}`}>
+    <img src={cross_icon} className="listproduct-editicon" alt="Edit" />
+  </Link>
+  <img 
+    src={cross_icon} 
+    onClick={() => {remove_product(product.id)}}  
+    className="listproduct-removeicon" 
+    alt="Remove" 
+  />
+</div>
         })}
       </div>
     </div>

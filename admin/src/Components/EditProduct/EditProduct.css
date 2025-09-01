@@ -1,0 +1,62 @@
+.EditProduct {
+  margin: 20px 50px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.EditProduct h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.EditProduct-itemfeild {
+  margin-bottom: 15px;
+}
+
+.EditProduct-itemfeild p {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.EditProduct-itemfeild input,
+.EditProduct-selector {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.EditProduct-price {
+  display: flex;
+  gap: 20px;
+}
+
+.EditProduct-price .EditProduct-itemfeild {
+  flex: 1;
+}
+
+.EditProduct-thumbnail-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border: 1px dashed #ddd;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.EditProduct-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.EditProduct-btn:hover {
+  background: #45a049;
+}
