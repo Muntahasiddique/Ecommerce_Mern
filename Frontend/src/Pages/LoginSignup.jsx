@@ -2,74 +2,88 @@ import React, { useState } from 'react'
 import './CSS/LoginSignup.css'
 
 const LoginSignup = () => {
-  const [isLogin, setIsLogin] = useState(true)
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: ''
+  const [state,setstate] = useState("Login")
+  const [formData , setformData] = useState({
+    name:"",
+    password:"",
+    email:"",
   })
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
+const ChangeHandler = (e) =>{
+  setformData({
+    ...formData,[e.target.name]:e.target.value
+  })
+}
+
+  const login = async()=>{
+console.log("Login fucn executed" ,formData )
   }
 
-  const toggleForm = () => {
-    setIsLogin(!isLogin)
+    const signup = async()=>{
+    console.log(" Signup fucn executed" ,formData )
+    let responseData ;
+    await fetch('http://localhost:4000/signup',{
+      method:'POST',
+      headers:{
+        Accept:'application/form-data',
+        'Content-Type':'application/json',
+      },
+      body : JSON.stringify(formData),
+    }).then((response)=>response.json()).then((data)=>responseData=data)
+    if (responseData.success) {
+      localStorage.setItem('auth-token',responseData.token)
+      window.location.replace("/")
+    }
+    else{
+      alert(responseData.errors)
+    }
   }
-
   return (
     <div className='loginsignup'>
       <div className='loginsignup-container'>
-        <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
+        <h1>{state}</h1>
         
         <div className="loginsignup-fields">
-          {!isLogin && (
-            <input 
+          
+            {state==="Signup"?<input 
               type="text" 
-              name="name"
-              placeholder='Your Name' 
-              value={formData.name}
-              onChange={handleChange}
-            />
-          )}
+              name="name" value={formData.name} onChange={ChangeHandler}
+              placeholder='Your Name' />:<></>}
+       
           <input 
             type="email" 
-            name="email"
+            name="email"value={formData.email} onChange={ChangeHandler}
             placeholder='Email Address' 
-            value={formData.email}
-            onChange={handleChange}
+        
           />
           <input 
             type="password" 
-            name="password"
+            name="password" value={formData.password} onChange={ChangeHandler}
             placeholder='Password' 
-            value={formData.password}
-            onChange={handleChange}
+       
           />
         </div>
 
-        <button className='loginsignup-button'>
-          {isLogin ? 'Login' : 'Continue'}
+        <button className='loginsignup-button'  onClick={()=>{state === "Login" ?login():signup()}} >
+          Continue
         </button>
-
-        <p className="loginsignup-login">
-          {isLogin ? "Don't have an account? " : "Already have an account? "}
-          <span onClick={toggleForm}>
-            {isLogin ? 'Sign Up' : 'Login'}
-          </span>
+            {
+              state === "Signup" ? <p className="loginsignup-login">
+         Already have an account? 
+         <span onClick={()=>{setstate("Login")}} >Login here</span>
+        </p> : <p className="loginsignup-login">
+       Create an Account
+         <span onClick={()=>{setstate("Signup")}} >Click here</span>
         </p>
-
-        {!isLogin && (
+            }
+     
           <div className="loginsignup-agree">
             <input type="checkbox" id='agree' />
             <label htmlFor='agree'>
               By continuing, I agree to the terms of use & privacy policy
             </label>
           </div>
-        )}
+      
       </div>
     </div>
   )
