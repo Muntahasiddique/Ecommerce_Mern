@@ -7,7 +7,7 @@
 
 .shopcategory-banner {
   width: 100%;
-  height: 350px;
+  height: 211px;
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 40px;
@@ -151,7 +151,7 @@
   }
   
   .shopcategory-banner {
-    height: 280px;
+    height: 164px;
   }
   
   .shopcategory_products {
@@ -173,7 +173,7 @@
   }
   
   .shopcategory-banner {
-    height: 220px;
+    height: 138px;
     margin-bottom: 30px;
   }
   
@@ -204,7 +204,7 @@
   }
   
   .shopcategory-banner {
-    height: 180px;
+    height: 89px;
     margin-bottom: 25px;
   }
   
