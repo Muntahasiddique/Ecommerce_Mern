@@ -1,131 +1,64 @@
 .Admin {
-    display: flex;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Main content area */
+.Admin::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238b5cf6' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  z-index: -1;
+}
+
 .Admin > :nth-child(2) {
-    flex: 1;
+  flex: 1;
+  margin-left: 280px;
+  padding: 2.5rem;
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .Admin > :nth-child(2) {
+    margin-left: 240px;
     padding: 2rem;
-    margin-left: 250px; /* Same as sidebar width */
-    min-height: calc(100vh - 80px);
-    margin-top: 80px; /* Adjust based on navbar height */
+  }
 }
 
-/* Responsive design */
-@media (max-width: 1024px) {
-    .Admin > :nth-child(2) {
-        margin-left: 220px;
-        padding: 1.5rem;
-    }
+@media (max-width: 968px) {
+  .Admin > :nth-child(2) {
+    margin-left: 80px;
+    padding: 1.5rem;
+  }
 }
 
-@media (max-width: 768px) {
-    .Admin {
-        flex-direction: column;
-    }
-    
-    .Admin > :nth-child(2) {
-        margin-left: 0;
-        margin-top: 70px;
-        padding: 1rem;
-        min-height: calc(100vh - 150px);
-    }
+@media (max-width: 640px) {
+  .Admin > :nth-child(2) {
+    margin-left: 70px;
+    padding: 1.25rem;
+  }
 }
 
 @media (max-width: 480px) {
-    .Admin > :nth-child(2) {
-        margin-top: 60px;
-        padding: 0.8rem;
-        min-height: calc(100vh - 140px);
-    }
+  .Admin > :nth-child(2) {
+    margin-left: 60px;
+    padding: 1rem;
+  }
 }
 
-/* Smooth transitions */
-.Admin {
-    transition: all 0.3s ease;
-}
-
-/* Ensure content is visible */
-.Admin > :nth-child(2) {
-    visibility: visible !important;
-    opacity: 1 !important;
-    display: block !important;
-}
-
-/* Scrollbar styling */
-.Admin > :nth-child(2)::-webkit-scrollbar {
-    width: 8px;
-}
-
-.Admin > :nth-child(2)::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-}
-
-.Admin > :nth-child(2)::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 4px;
-}
-
-.Admin > :nth-child(2)::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.5);
-}
-
-/* Loading animation */
-.Admin > :nth-child(2) {
-    animation: fadeIn 0.6s ease-in-out;
-}
-
+/* Animations */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Print styles */
-@media print {
-    .Admin {
-        display: block;
-    }
-    
-    .Admin > :nth-child(2) {
-        margin-left: 0;
-        margin-top: 0;
-    }
-}
-
-/* High contrast mode */
-@media (prefers-contrast: high) {
-    .Admin {
-        background: #ffffff;
-    }
-    
-    .Admin > :nth-child(2) {
-        border-left: 2px solid #000000;
-    }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .Admin,
-    .Admin > :nth-child(2) {
-        transition: none;
-        animation: none;
-    }
-}
-
-/* Ensure content doesn't get hidden */
-.Admin {
-    overflow: visible !important;
-}
-
-.Admin > :nth-child(2) {
-    overflow: visible !important;
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

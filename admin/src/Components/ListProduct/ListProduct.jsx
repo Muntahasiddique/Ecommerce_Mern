@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import "./ListProduct.css";
 import cross_icon from '../../assets/cross_icon.png'
+import  editicon from '../../assets/editicon.png'
+      
+
 import { Link } from "react-router-dom"; 
 const ListProduct = () => {
   const [allproducts, setallproducts] = useState([]);
@@ -51,7 +54,7 @@ const ListProduct = () => {
   <p>${product.new_price}</p>
   <p>{product.category}</p>
   <Link to={`/editproduct/${product.id}`}>
-    <img src={cross_icon} className="listproduct-editicon" alt="Edit" />
+    <img src={editicon} className="listproduct-editicon" alt="Edit" />
   </Link>
   <img 
     src={cross_icon} 
