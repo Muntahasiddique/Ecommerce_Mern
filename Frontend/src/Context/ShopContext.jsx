@@ -91,7 +91,71 @@ const getTotalCartItems = () =>{
     }
     return totalItems
 }
-  const contextValue = { all_product, cartItem, addToCart, RemoveToCart ,getTotalAmount ,getTotalCartItems };
+// Updated checkout function in ShopContext
+const checkout = async (address) => {
+  if (localStorage.getItem('auth-token')) {
+    try {
+      console.log("Sending checkout request with address:", address);
+      
+      const response = await fetch('http://localhost:4000/checkout', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'auth-token': `${localStorage.getItem('auth-token')}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ address })
+      });
+      
+      const data = await response.json();
+      console.log("Checkout response:", data);
+      
+      if (data.success) {
+        // Reset cart after successful checkout
+        setCartItem(getDefaultCart());
+        return { success: true, orderId: data.orderId };
+      } else {
+        return { success: false, message: data.message };
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+      return { success: false, message: "Network error" };
+    }
+  } else {
+    return { success: false, message: "Please login to checkout" };
+  }
+};
+
+const fetchOrders = async () => {
+  if (localStorage.getItem('auth-token')) {
+    try {
+      const response = await fetch('http://localhost:4000/orders', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'auth-token': `${localStorage.getItem('auth-token')}`,
+        },
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        return data.orders;
+      } else {
+        return [];
+      }
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+      return [];
+    }
+  } else {
+    return [];
+  }
+};
+
+
+  const contextValue = { all_product, cartItem, addToCart, RemoveToCart ,getTotalAmount ,getTotalCartItems , checkout,
+  fetchOrders};
   return (
     <ShopContext.Provider value={contextValue}>
       {props.children}

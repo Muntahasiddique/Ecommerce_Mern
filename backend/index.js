@@ -17,6 +17,23 @@ mongoose.connect(
 );
 
 // Api creation
+
+//creating middleware to fetch user
+const fetchUser = async (req, res, next) => {
+  const token = req.header('auth-token')
+  if (!token) {
+    return res.status(401).send({errors: "please authenticate using valid token"})
+  } else {
+    try {
+      const data = jwt.verify(token, 'secret_ecom')
+      req.user = data.user;
+      next();
+    } catch (error) {
+      return res.status(401).send({errors: "Please authenticate using a valid token"})
+    }
+  }
+}
+
 // Get single product by ID
 app.get('/product/:id', async (req, res) => {
   try {
@@ -78,6 +95,7 @@ app.post('/updateproduct', async (req, res) => {
     });
   }
 });
+
 app.get("/", (req, res) => {
   res.send("express running");
 });
@@ -138,6 +156,7 @@ const Product = mongoose.model("Product" , {
         default:true,
     },
 })
+
 app.post('/addproduct' , async (req,res)=>{
     let products = await Product.find({})
 let id;
@@ -265,6 +284,62 @@ else{
 }
 })
 
+
+
+// Order Schema - make sure it's correct
+// Order Schema - updated with orderId field
+const OrderSchema = new mongoose.Schema({
+  orderId: {
+    type: String,
+    unique: true,
+    default: function() {
+      return 'ORD' + Date.now() + Math.random().toString(36).substr(2, 5).toUpperCase();
+    }
+  },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Users',
+    required: true,
+  },
+  items: [{
+    productId: Number,
+    name: String,
+    price: Number,
+    quantity: Number,
+    image: String
+  }],
+  amount: {
+    type: Number,
+    required: true,
+  },
+  address: {
+    type: Object,
+    required: true,
+  },
+  status: {
+    type: String,
+    default: "Pending",
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+const Order = mongoose.model("Order", OrderSchema);
+
+
+// Get user orders
+app.get('/orders', fetchUser, async (req, res) => {
+  try {
+    const orders = await Order.find({userId: req.user.id}).sort({date: -1});
+    res.json({success: true, orders});
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    res.status(500).json({success: false, message: "Server error"});
+  }
+});
+
 //creating end point for new collection dta
 app.get('/newcollections', async ( req,res)=>{
 let products = await Product.find({});
@@ -280,22 +355,6 @@ let PopularInWomen = products.slice(0,4);
 console.log("popular in women fetched fetched")
 res.send(PopularInWomen);
 })
-//creating middleware to fetch user
-const fetchUser = async (req , res,next)=>{
-const token = req.header('auth-token')
-if (!token) {
-return  res.status(401).send({errors:"please authenticate using valid token"})
-}
-else{
-  try {
-    const data = jwt.verify(token,'secret_ecom')
-    req.user = data.user;
-    next();
-  } catch (error) {
-   return res.status(401).send({errors:"Please authenticate using a valid token"})
-  }
-}
-}
 
 //creating end point for add to cart
 app.post('/addtocart', fetchUser, async (req, res) => {
@@ -324,6 +383,88 @@ app.post('/getcart' , fetchUser,async ( req,res)=>{
   let userData = await Users.findOne({_id:req.user.id})
 res.json(userData.cartData)
 })
+
+// Checkout endpoint
+// Checkout endpoint - updated with better error handling
+app.post('/checkout', fetchUser, async (req, res) => {
+  try {
+    console.log("Checkout request received:", req.body);
+    
+    const user = await Users.findOne({_id: req.user.id});
+    if (!user) {
+      console.log("User not found with ID:", req.user.id);
+      return res.status(400).json({success: false, errors: "User not found"});
+    }
+
+    // Get cart items with details
+    const cartItems = user.cartData;
+    console.log("User cart data:", cartItems);
+    
+    const productIds = Object.keys(cartItems).filter(id => cartItems[id] > 0);
+    console.log("Product IDs with quantity > 0:", productIds);
+    
+    if (productIds.length === 0) {
+      return res.status(400).json({success: false, message: "Cart is empty"});
+    }
+    
+    // Get product details for items in cart
+    const products = await Product.find({ 
+      id: { $in: productIds.map(id => parseInt(id)) } 
+    });
+    console.log("Found products:", products);
+    
+    // Prepare order items
+    const orderItems = products.map(product => ({
+      productId: product.id,
+      name: product.name,
+      price: product.new_price,
+      quantity: cartItems[product.id],
+      image: product.image
+    }));
+    
+    // Calculate total amount
+    const amount = orderItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+    console.log("Total amount:", amount);
+    
+    // Validate address
+    if (!req.body.address || Object.keys(req.body.address).length === 0) {
+      return res.status(400).json({success: false, message: "Address is required"});
+    }
+    
+    // Create new order
+    const order = new Order({
+      userId: req.user.id,
+      items: orderItems,
+      amount: amount,
+      address: req.body.address,
+    });
+    
+    await order.save();
+    console.log("Order saved:", order);
+    
+    // Clear user's cart after successful order
+    let emptyCart = {};
+    for (let i = 0; i < 300; i++) {
+      emptyCart[i] = 0;
+    }
+    user.cartData = emptyCart;
+    await user.save();
+    console.log("User cart cleared");
+    
+    res.json({
+      success: true,
+      message: "Order placed successfully",
+      orderId: order._id
+    });
+  } catch (error) {
+    console.error("Checkout error details:", error);
+    res.status(500).json({
+      success: false, 
+      message: "Server error during checkout",
+      error: error.message
+    });
+  }
+});
 
 app.listen(port, (error) => {
   if (!error) {
