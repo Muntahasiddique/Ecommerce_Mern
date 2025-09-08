@@ -13,10 +13,10 @@ const Descriptionbox = () => {
       </div>
       <div className="descriptionbox-description">
         <p>
-            Ecommerece site is Online Platform
+            Ecommerce site is Online Platform
         </p>
         <p>
-             Ecommerece Sites Display Services
+             Ecommerce Sites Display Services
         </p>
       </div>
     </div>
