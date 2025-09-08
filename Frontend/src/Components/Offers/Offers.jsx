@@ -1,6 +1,15 @@
 import './Offers.css'
 import exclusive_img from '../Assets/exclusive_image.png'
+import { useNavigate } from "react-router-dom";
 const Offers = () => {
+const navigate = useNavigate();
+
+  const handleLatestCollectionClick = () => {
+    // Navigate to new collections page
+    navigate("/newcollections");
+  };
+
+
   return (
     <div className='offers' >
       
@@ -8,7 +17,7 @@ const Offers = () => {
         <h1>Exclusive</h1>
         <h1>Offers for you</h1>
         <p>Only on best sellers products</p>
-        <button>Check Now</button>
+        <button onClick={handleLatestCollectionClick} >Check Now</button>
       </div>
 
         <div className="offers-right">

@@ -1,5 +1,5 @@
 import './Footer.css'
-import footer_logo from '../Assets/logo_big.png'
+import logo from '../Assets/logo.svg'
 import instagram_icon from '../Assets/instagram_icon.png'
 import pintester_icon from '../Assets/pintester_icon.png'
 import whatsapp_icon from '../Assets/whatsapp_icon.png'
@@ -9,8 +9,8 @@ const Footer = () => {
     <div className='footer'>
       <div className="footer-top">
         <div className="footer-logo">
-          <img src={footer_logo} alt="Shopper Logo" />
-          <p>Shopper</p>
+          <img src={logo} alt="Shopper Logo" />
+          <p>M Watch Co.</p>
         </div>
         <div className="footer-newsletter">
           <h3>Stay Updated</h3>

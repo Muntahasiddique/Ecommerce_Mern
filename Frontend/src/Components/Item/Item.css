@@ -83,7 +83,7 @@
 
 /* Add to cart button */
 .item::after {
-  content: 'Add to Cart';
+  content: 'Click on img for Add to Cart';
   position: absolute;
   bottom: 120px;
   left: 50%;
